@@ -1,0 +1,12 @@
+<% def timestamps
+  date = Time.now.strftime('%Y%m%d').to_s
+  time = Time.now.strftime('%H-%M-%S').to_s
+  "#{date}_#{time}"
+end %>
+
+<% RUN_TSTAMPs = timestamps.freeze %>
+
+report: -p html_report -p json_report
+
+html_report: --format pretty --format html --out=reports/livelo_test<%= RUN_TSTAMPs %>.html
+json_report: --format pretty --format json --out=reports/livelo_test<%= RUN_TSTAMPs %>.json
